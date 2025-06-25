@@ -15,8 +15,8 @@ def layout(
     max_lat=52.40,
     min_lon=None,
     max_lon=None,
-    map_center_lat=51.91,
-    map_center_lon=4.91,
+    center_lat=51.91,
+    center_lon=4.91,
 ):
     return html.Div(
         [
@@ -24,7 +24,7 @@ def layout(
             dl.Map(
                 id="map",
                 bounds=[[min_lat, min_lon], [max_lat, max_lon]],
-                center={"lat": map_center_lat, "lng": map_center_lon},
+                center={"lat": center_lat, "lng": center_lon},
                 style={"width": "50%", "height": "500px"},
                 children=[dl.TileLayer()],
             ),
@@ -44,8 +44,8 @@ dash.register_page("home", path="/", layout=layout)
     prevent_initial_call=True,
 )
 def update_url(bounds, center):
-    map_center_lat = center["lat"]
-    map_center_lon = center["lng"]
+    center_lat = center["lat"]
+    center_lon = center["lng"]
     min_lat = bounds[0][0]
     max_lat = bounds[1][0]
     min_lon = bounds[0][1]
@@ -56,8 +56,8 @@ def update_url(bounds, center):
         "min_lat": min_lat,
         "max_lon": max_lon,
         "min_lon": min_lon,
-        "map_center_lat": map_center_lat,
-        "map_center_lon": map_center_lon,
+        "center_lat": map_center_lat,
+        "center_lon": map_center_lon,
     }
     query_string = urllib.parse.urlencode(params)
     return f"?{query_string}"
