@@ -56,8 +56,8 @@ def update_url(bounds, center):
         "min_lat": min_lat,
         "max_lon": max_lon,
         "min_lon": min_lon,
-        "center_lat": map_center_lat,
-        "center_lon": map_center_lon,
+        "center_lat": center_lat,
+        "center_lon": center_lon,
     }
     query_string = urllib.parse.urlencode(params)
     return f"?{query_string}"
